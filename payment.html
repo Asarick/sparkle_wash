@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SparkleWash Kenya - Payment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #78a4cf;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background-color: #34329e;
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: rgb(35, 27, 107) !important;
+        }
+
+        .main-content {
+            flex: 1;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin-top: 30px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            background-color: #4042b4;
+            color: white;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .btn-primary {
+            background-color: #4042b4;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #31389e;
+        }
+
+        footer {
+            background-color: #34329e;
+            color: rgb(135, 195, 206);
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+
+        .footer-heading {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .footer-content {
+            font-size: 0.9em;
+        }
+
+        .social-icons {
+            font-size: 1.5em;
+        }
+
+        .social-icons a {
+            color: white;
+            margin-right: 10px;
+        }
+
+        #paymentDocument {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #card-element {
+            border: 1px solid #ced4da;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">SparkleWash Kenya</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="book.html">Book Now</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="payment.html">Payment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="container">
+            <h1 class="text-center mb-4">Payment for Car Wash Services</h1>
+            <div id="greeting" class="text-center mb-3"></div>
+            <div id="datetime" class="text-center mb-4"></div>
+
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Service Details</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="paymentForm">
+                                <div class="mb-3">
+                                    <label for="customerName" class="form-label">Customer Name</label>
+                                    <input type="text" class="form-control" id="customerName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="vehicleType" class="form-label">Vehicle Type</label>
+                                    <select class="form-select" id="vehicleType" required>
+                                        <option value="">Select vehicle type</option>
+                                        <option value="Sedan">Sedan</option>
+                                        <option value="SUV">SUV</option>
+                                        <option value="Van">Van</option>
+                                        <option value="Truck">Truck</option>
+                                        <option value="Bus">Bus</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="servicePackage" class="form-label">Service Package</label>
+                                    <select class="form-select" id="servicePackage" required>
+                                        <option value="">Select package</option>
+                                        <option value="Basic Wash">Basic Wash - Kes 1</option>
+                                        <option value="Deluxe Wash">Deluxe Wash - Kes 2</option>
+                                        <option value="Premium Wash">Premium Wash - Kes 3</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Additional Services</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Underwash"
+                                            id="underwash">
+                                        <label class="form-check-label" for="underwash">
+                                            Underwash - Kes 1
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Interior Wash"
+                                            id="interior">
+                                        <label class="form-check-label" for="interior">
+                                            Interior Wash - Kes 2
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Vacuuming"
+                                            id="vacuuming">
+                                        <label class="form-check-label" for="vacuuming">
+                                            Vacuuming - Kes 3
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Engine Wash" id="engine">
+                                        <label class="form-check-label" for="engine">
+                                            Engine Wash - Kes 2999
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phoneNumber" class="form-label">M-Pesa Phone Number</label>
+                                    <input type="tel" class="form-control" id="phoneNumber" required
+                                        placeholder="254XXXXXXXXX">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Payment Details</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="paymentDetails"></div>
+                            <div id="paymentSection" style="display: none;">
+                                <h4 class="mt-4">M-Pesa Payment</h4>
+                                <button id="submit-payment" class="btn btn-primary">Pay with M-Pesa</button>
+                            </div>
+                            <div id="paymentDocument" class="mt-4" style="display: none;">
+                                <h4>Payment Receipt</h4>
+                                <div id="documentContent" class="border p-3"></div>
+                                <button id="printButton" class="btn btn-primary mt-3">Print Receipt</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <!-- Footer content remains the same -->
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Function to get greeting based on time of day
+        function getGreeting() {
+            const hour = new Date().getHours();
+            if (hour < 12) return "Good morning!";
+            if (hour < 18) return "Good afternoon!";
+            return "Good evening!";
+        }
+
+        // Function to update date and time
+        function updateDateTime() {
+            const now = new Date();
+            document.getElementById('datetime').textContent = now.toLocaleString();
+        }
+
+        // Set initial greeting and start updating date/time
+        document.getElementById('greeting').textContent = getGreeting();
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
+        // Payment form submission
+        document.getElementById('paymentForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const customerName = document.getElementById('customerName').value;
+            const vehicleType = document.getElementById('vehicleType').value;
+            const servicePackage = document.getElementById('servicePackage').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const additionalServices = [
+                'underwash',
+                'interior',
+                'vacuuming',
+                'engine'
+            ].filter(service => document.getElementById(service).checked)
+                .map(service => document.getElementById(service).value);
+
+            // Calculate total
+            let basePrice = 0;
+            switch (servicePackage) {
+                case 'Basic Wash': basePrice = 1; break;
+                case 'Deluxe Wash': basePrice = 2; break;
+                case 'Premium Wash': basePrice = 3; break;
+            }
+            let additionalPrice = 0;
+            additionalServices.forEach(service => {
+                switch (service) {
+                    case 'Underwash': additionalPrice += 1; break;
+                    case 'Interior Wash': additionalPrice += 2; break;
+                    case 'Vacuuming': additionalPrice += 3; break;
+                    case 'Engine Wash': additionalPrice += 4; break;
+                }
+            });
+            const totalPrice = basePrice + additionalPrice;
+
+            const paymentData = {
+                orderNumber: 'SW-' + Math.floor(Math.random() * 1000000),
+                customerName: customerName,
+                vehicleType: vehicleType,
+                servicePackage: servicePackage,
+                additionalServices: additionalServices,
+                phoneNumber: phoneNumber,
+                totalPrice: totalPrice,
+                orderDate: new Date().toLocaleDateString(),
+                status: 'Pending Payment'
+            };
+
+            updatePaymentDetails(paymentData);
+            document.getElementById('paymentSection').style.display = 'block';
+            document.getElementById('submit-payment').textContent = `Pay KES ${paymentData.totalPrice.toFixed(2)} with M-Pesa`;
+        });
+
+        function updatePaymentDetails(paymentData) {
+            const paymentDetails = document.getElementById('paymentDetails');
+            paymentDetails.innerHTML = `
+                <h4>Order Summary</h4>
+                <p><strong>Order Number:</strong> ${paymentData.orderNumber}</p>
+                <p><strong>Customer Name:</strong> ${paymentData.customerName}</p>
+                <p><strong>Vehicle Type:</strong> ${paymentData.vehicleType}</p>
+                <p><strong>Service Package:</strong> ${paymentData.servicePackage}</p>
+                <p><strong>Additional Services:</strong> ${paymentData.additionalServices.join(', ') || 'None'}</p>
+                <p><strong>M-Pesa Phone Number:</strong> ${paymentData.phoneNumber}</p>
+                <p><strong>Total Price:</strong> KES ${paymentData.totalPrice.toFixed(2)}</p>
+                <p><strong>Order Date:</strong> ${paymentData.orderDate}</p>
+                <p><strong>Status:</strong> ${paymentData.status}</p>
+            `;
+        }
+
+        // M-Pesa payment initiation
+        function initiateMpesaPayment(phoneNumber, amount) {
+            return new Promise((resolve) => {
+                console.log(`Initiating M-Pesa payment for ${phoneNumber} with amount KES ${amount}`);
+                setTimeout(() => {
+                    // Simulate a successful payment 90% of the time
+                    const isSuccessful = Math.random() < 0.9;
+                    if (isSuccessful) {
+                        resolve({
+                            MerchantRequestID: "29115-" + Math.floor(Math.random() * 100000000),
+                            CheckoutRequestID: "ws_CO_" + Date.now(),
+                            ResponseCode: "0",
+                            ResponseDescription: "Success. Payment received and processed",
+                            CustomerMessage: "Payment successful. Thank you for your purchase."
+                        });
+                    } else {
+                        resolve({
+                            ResponseCode: "1",
+                            ResponseDescription: "Failed. Payment not received",
+                            CustomerMessage: "Payment failed. Please try again or contact support."
+                        });
+                    }
+                }, 3000); // Simulate processing time
+            });
+        }
+
+        // Handle M-Pesa payment submission
+        document.getElementById('submit-payment').addEventListener('click', function () {
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const amount = parseFloat(this.textContent.match(/KES (\d+(\.\d{1,2})?)/)[1]);
+
+            this.disabled = true;
+            this.textContent = 'Processing Payment...';
+
+            initiateMpesaPayment(phoneNumber, amount)
+                .then(response => {
+                    console.log('M-Pesa payment processed:', response);
+                    if (response.ResponseCode === "0") {
+                        alert(response.CustomerMessage);
+                        // Update the payment status
+                        const paymentDetails = document.getElementById('paymentDetails');
+                        paymentDetails.innerHTML = paymentDetails.innerHTML.replace('Pending Payment', 'Paid');
+                        // Hide payment section and show payment document
+                        document.getElementById('paymentSection').style.display = 'none';
+                        generatePaymentDocument(response);
+                    } else {
+                        throw new Error(response.CustomerMessage);
+                    }
+                })
+                .catch(error => {
+                    console.error('M-Pesa payment failed:', error);
+                    alert(error.message || 'Payment failed. Please try again.');
+                    this.disabled = false;
+                    this.textContent = `Pay KES ${amount.toFixed(2)} with M-Pesa`;
+                });
+        });
+
+        // Update the generatePaymentDocument function to include transaction details
+        function generatePaymentDocument(paymentResponse) {
+            const documentContent = document.getElementById('documentContent');
+            const paymentDetails = document.getElementById('paymentDetails').innerHTML;
+            const transactionId = paymentResponse.CheckoutRequestID;
+            const transactionDate = new Date().toLocaleString();
+
+            documentContent.innerHTML = `
+    <div style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; border: 2px solid #4042b4; border-radius: 15px; background-color: #f8f9fa;">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h1 style="color: #4042b4; margin: 10px 0;">SparkleWash Kenya</h1>
+            <p style="font-style: italic;">Your trusted partner for professional car cleaning</p>
+        </div>
+        <h2 style="text-align: center; color: #31389e; border-bottom: 2px solid #31389e; padding-bottom: 10px;">Payment Receipt</h2>
+        <div style="background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            ${paymentDetails}
+            <p><strong>Transaction ID:</strong> ${transactionId}</p>
+            <p><strong>Transaction Date:</strong> ${transactionDate}</p>
+            <p><strong>Payment Method:</strong> M-Pesa</p>
+            <p><strong>Payment Status:</strong> Successful</p>
+        </div>
+        <div style="margin-top: 20px; padding: 15px; background-color: #e6e6ff; border-radius: 10px;">
+            <p style="font-style: italic; color: #4042b4;">Thank you for choosing SparkleWash Kenya. We appreciate your business!</p>
+        </div>
+        <div style="margin-top: 30px; text-align: center; font-size: 14px; color: #666;">
+            <p>SparkleWash Kenya Ltd.</p>
+            <p>123 Shine Avenue, Nairobi, Kenya</p>
+            <p>Phone: +254 123 456 789 | Email: support@sparklewashkenya.com</p>
+        </div>
+    </div>
+    `;
+            document.getElementById('paymentDocument').style.display = 'block';
+        }
+
+        // Print functionality
+        document.getElementById('printButton').addEventListener('click', function () {
+            const printContent = document.getElementById('documentContent').innerHTML;
+            const originalContent = document.body.innerHTML;
+            document.body.innerHTML = printContent;
+            window.print();
+            document.body.innerHTML = originalContent;
+            location.reload(); // Reload the page after printing
+        });
+    </script>
+</body>
+
+</html>

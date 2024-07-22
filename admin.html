@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SparkleWash Kenya - Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        .sidebar {
+            height: 100vh;
+            background-color: #4042b4;
+            color: white;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #31389e;
+        }
+
+        .main-content {
+            padding: 20px;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+
+        .table-responsive {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-2 d-none d-md-block sidebar">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#dashboard">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#appointments">
+                                <i class="fas fa-calendar-check"></i> Appointments
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#services">
+                                <i class="fas fa-car"></i> Services
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#employees">
+                                <i class="fas fa-users"></i> Employees
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#feedback">
+                                <i class="fas fa-comments"></i> Feedback
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#users">
+                                <i class="fas fa-user"></i> Users
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-10 ms-sm-auto px-md-4">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Admin Dashboard</h1>
+                </div>
+
+                <!-- Dashboard Section -->
+                <section id="dashboard">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card text-white bg-primary">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Appointments</h5>
+                                    <p class="card-text" id="totalAppointments">0</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-white bg-success">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Revenue</h5>
+                                    <p class="card-text" id="totalRevenue">KES 0</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-white bg-info">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Employees</h5>
+                                    <p class="card-text" id="totalEmployees">0</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-white bg-warning">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pending Feedbacks</h5>
+                                    <p class="card-text" id="pendingFeedbacks">0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Appointments Section -->
+                <section id="appointments" style="display: none;">
+                    <h2>Manage Appointments</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Customer</th>
+                                    <th>Service</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Assigned Employee</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="appointmentsTable">
+                                <!-- Appointments will be dynamically added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Services Section -->
+                <section id="services" style="display: none;">
+                    <h2>Manage Services</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Service Name</th>
+                                    <th>Price</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="servicesTable">
+                                <!-- Services will be dynamically added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="btn btn-primary mt-3" onclick="addNewService()">Add New Service</button>
+                </section>
+
+                <!-- Employees Section -->
+                <section id="employees" style="display: none;">
+                    <h2>Manage Employees</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employeesTable">
+                                <!-- Employees will be dynamically added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="btn btn-primary mt-3" onclick="addNewEmployee()">Add New Employee</button>
+                </section>
+
+                <!-- Feedback Section -->
+                <section id="feedback" style="display: none;">
+                    <h2>Manage Feedback</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Customer</th>
+                                    <th>Message</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="feedbackTable">
+                                <!-- Feedback will be dynamically added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Users Section -->
+                <section id="users" style="display: none;">
+                    <h2>Manage Users</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Last Login</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTable">
+                                <!-- Users will be dynamically added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sample data (in a real application, this would come from a backend)
+        const appointments = [
+            { id: 1, customer: "John Doe", service: "Basic Wash", date: "2024-07-15", status: "Pending", assignedEmployee: null },
+            { id: 2, customer: "Jane Smith", service: "Deluxe Wash", date: "2024-07-16", status: "Confirmed", assignedEmployee: 1 },
+        ];
+
+        const services = [
+            { id: 1, name: "Basic Wash", price: 1599 },
+            { id: 2, name: "Deluxe Wash", price: 2499 },
+            { id: 3, name: "Premium Wash", price: 3999 },
+        ];
+
+        const employees = [
+            { id: 1, name: "Michael Johnson", position: "Wash Technician" },
+            { id: 2, name: "Sarah Brown", position: "Customer Service" },
+        ];
+
+        const feedbacks = [
+            { id: 1, customer: "Alice Cooper", message: "Great service!", date: "2024-07-10", status: "Pending" },
+            { id: 2, customer: "Bob Marley", message: "Could be better", date: "2024-07-11", status: "Replied" },
+        ];
+
+        const users = [
+            { id: 1, name: "Kelvin Munyao", email: "john@example.com", lastLogin: "2024-07-12 10:30 AM" },
+            { id: 2, name: "Jane Smith", email: "jane@example.com", lastLogin: "2024-07-12 11:45 AM" },
+        ];
+
+        // Function to update dashboard
+        function updateDashboard() {
+            document.getElementById('totalAppointments').textContent = appointments.length;
+            document.getElementById('totalRevenue').textContent = `KES ${services.reduce((sum, service) => sum + service.price, 0)}`;
+            document.getElementById('totalEmployees').textContent = employees.length;
+            document.getElementById('pendingFeedbacks').textContent = feedbacks.filter(f => f.status === "Pending").length;
+
+            populateAppointments();
+            populateServices();
+            populateEmployees();
+            populateFeedback();
+            populateUsers();
+        }
+
+        // Function to populate appointments table
+        function populateAppointments() {
+            const table = document.getElementById('appointmentsTable');
+            table.innerHTML = '';
+            appointments.forEach(app => {
+                const row = table.insertRow();
+                row.innerHTML = `
+                    <td>${app.id}</td>
+                    <td>${app.customer}</td>
+                    <td>${app.service}</td>
+                    <td>${app.date}</td>
+                    <td>${app.status}</td>
+                    <td>
+                        <select onchange="assignEmployee(${app.id}, this.value)">
+                            <option value="">Assign Employee</option>
+                            ${employees.map(emp => `<option value="${emp.id}"
+                                ${app.assignedEmployee === emp.id ? 'selected' : ''}>${emp.name}</option>
+                            `).join('')}
+                        </select>
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" onclick="editAppointment(${app.id})">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="cancelAppointment(${app.id})">Cancel</button>
+                    </td>
+                `;
+            });
+        }
+
+        function assignEmployee(appointmentId, employeeId) {
+            const appointment = appointments.find(app => app.id === appointmentId);
+            if (appointment) {
+                appointment.assignedEmployee = employeeId ? parseInt(employeeId) : null;
+                populateAppointments();
+                alert('Employee assigned successfully');
+            }
+        }
+
+        // Function to populate services table
+        function populateServices() {
+            const table = document.getElementById('servicesTable');
+            table.innerHTML = '';
+            services.forEach(service => {
+                const row = table.insertRow();
+                row.innerHTML = `
+                    <td>${service.id}</td>
+                    <td>${service.name}</td>
+                    <td>KES ${service.price}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" onclick="editService(${service.id})">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteService(${service.id})">Delete</button>
+                    </td>
+                `;
+            });
+        }
+
+        // Function to populate employees table
+        function populateEmployees() {
+            const table = document.getElementById('employeesTable');
+            table.innerHTML = '';
+            employees.forEach(employee => {
+                const row = table.insertRow();
+                row.innerHTML = `
+                    <td>${employee.id}</td>
+                    <td>${employee.name}</td>
+                    <td>${employee.position}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" onclick="editEmployee(${employee.id})">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteEmployee(${employee.id})">Delete</button>
+                    </td>
+                `;
+            });
+        }
+
+        // Function to populate feedback table
+        function populateFeedback() {
+            const table = document.getElementById('feedbackTable');
+            table.innerHTML = '';
+            feedbacks.forEach(feedback => {
+                const row = table.insertRow();
+                row.innerHTML = `
+                    <td>${feedback.id}</td>
+                    <td>${feedback.customer}</td>
+                    <td>${feedback.message}</td>
+                    <td>${feedback.date}</td>
+                    <td>${feedback.status}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" onclick="replyToFeedback(${feedback.id})">Reply</button>
+                    </td>
+                `;
+            });
+        }
+
+        // Function to populate users table
+        function populateUsers() {
+            const table = document.getElementById('usersTable');
+            table.innerHTML = '';
+            users.forEach(user => {
+                const row = table.insertRow();
+                row.innerHTML = `
+                    <td>${user.id}</td>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.lastLogin}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" onclick="viewUserDetails(${user.id})">View Details</button>
+                    </td>
+                `;
+            });
+        }
+
+        // Navigation functions
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const sectionId = this.getAttribute('href').substring(1);
+                document.querySelectorAll('main > section').forEach(section => {
+                    section.style.display = 'none';
+                });
+                document.getElementById(sectionId).style.display = 'block';
+                if (sectionId === 'appointments') populateAppointments();
+                if (sectionId === 'services') populateServices();
+                if (sectionId === 'employees') populateEmployees();
+                if (sectionId === 'feedback') populateFeedback();
+                if (sectionId === 'users') populateUsers();
+            });
+        });
+
+        // Function to edit appointment
+        function editAppointment(id) {
+            const appointment = appointments.find(a => a.id === id);
+            if (appointment) {
+                const newStatus = prompt(`Edit status for appointment ${id}:`, appointment.status);
+                if (newStatus) {
+                    appointment.status = newStatus;
+                    populateAppointments();
+                    updateDashboard();
+                    alert(`Appointment ${id} updated successfully.`);
+                }
+            }
+        }
+
+        // Function to cancel appointment
+        function cancelAppointment(id) {
+            if (confirm(`Are you sure you want to cancel appointment ${id}?`)) {
+                const index = appointments.findIndex(a => a.id === id);
+                if (index !== -1) {
+                    appointments.splice(index, 1);
+                    populateAppointments();
+                    updateDashboard();
+                    alert(`Appointment ${id} cancelled successfully.`);
+                }
+            }
+        }
+
+        // Function to edit service
+        function editService(id) {
+            const service = services.find(s => s.id === id);
+            if (service) {
+                const newPrice = prompt(`Edit price for ${service.name}:`, service.price);
+                if (newPrice && !isNaN(newPrice)) {
+                    service.price = parseFloat(newPrice);
+                    populateServices();
+                    updateDashboard();
+                    alert(`${service.name} price updated successfully.`);
+                }
+            }
+        }
+
+        // Function to delete service
+        function deleteService(id) {
+            if (confirm(`Are you sure you want to delete service ${id}?`)) {
+                const index = services.findIndex(s => s.id === id);
+                if (index !== -1) {
+                    services.splice(index, 1);
+                    populateServices();
+                    updateDashboard();
+                    alert(`Service ${id} deleted successfully.`);
+                }
+            }
+        }
+
+        // Function to add new service
+        function addNewService() {
+            const name = prompt("Enter new service name:");
+            const price = prompt("Enter new service price:");
+            if (name && price && !isNaN(price)) {
+                const newId = services.length > 0 ? Math.max(...services.map(s => s.id)) + 1 : 1;
+                services.push({ id: newId, name, price: parseFloat(price) });
+                populateServices();
+                updateDashboard();
+                alert(`New service "${name}" added successfully.`);
+            }
+        }
+
+        // Function to edit employee
+        function editEmployee(id) {
+            const employee = employees.find(e => e.id === id);
+            if (employee) {
+                const newPosition = prompt(`Edit position for ${employee.name}:`, employee.position);
+                if (newPosition) {
+                    employee.position = newPosition;
+                    populateEmployees();
+                    alert(`${employee.name}'s position updated successfully.`);
+                }
+            }
+        }
+
+        // Function to delete employee
+        function deleteEmployee(id) {
+            if (confirm(`Are you sure you want to remove employee ${id}?`)) {
+                const index = employees.findIndex(e => e.id === id);
+                if (index !== -1) {
+                    employees.splice(index, 1);
+                    populateEmployees();
+                    updateDashboard();
+                    alert(`Employee ${id} removed successfully.`);
+                }
+            }
+        }
+
+        // Function to add new employee
+        function addNewEmployee() {
+            const name = prompt("Enter new employee name:");
+            const position = prompt("Enter new employee position:");
+            if (name && position) {
+                const newId = employees.length > 0 ? Math.max(...employees.map(e => e.id)) + 1 : 1;
+                employees.push({ id: newId, name, position });
+                populateEmployees();
+                updateDashboard();
+                alert(`New employee "${name}" added successfully.`);
+            }
+        }
+
+        // Function to reply to feedback
+        function replyToFeedback(id) {
+            const feedback = feedbacks.find(f => f.id === id);
+            if (feedback) {
+                const reply = prompt(`Enter reply for feedback from ${feedback.customer}:`);
+                if (reply) {
+                    feedback.status = "Replied";
+                    populateFeedback();
+                    updateDashboard();
+                    alert(`Reply sent to ${feedback.customer}.`);
+                    // In a real application, you would send this reply to the user
+                }
+            }
+        }
+
+        // Function to view user details
+        function viewUserDetails(id) {
+            const user = users.find(u => u.id === id);
+            if (user) {
+                alert(`User Details:\nName: ${user.name}\nEmail: ${user.email}\nLast Login: ${user.lastLogin}`);
+                // In a real application, you might open a modal with more detailed information
+            }
+        }
+
+        // Initial setup
+        updateDashboard();
+        document.getElementById('dashboard').style.display = 'block';
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SparkleWash Kenya - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #78a4cf;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background-color: #7ad5ff;
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: rgb(35, 27, 107) !important;
+        }
+
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.pinimg.com/564x/fd/ca/72/fdca72d5165ba813bebfe33efad1e57c.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgb(17, 15, 48);
+            text-align: center;
+        }
+
+        .hero-content {
+            background-color: rgba(118, 167, 207, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-content:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-primary {
+            background-color: #4042b4;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #31389e;
+        }
+
+        footer {
+            background-color: #34329e;
+            color: rgb(135, 195, 206);
+            padding: 20px 0;
+            margin-top: auto;
+        }
+
+        .footer-heading {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .footer-content {
+            font-size: 0.9em;
+        }
+
+        .social-icons {
+            font-size: 1.5em;
+        }
+
+        .social-icons a {
+            color: white;
+            margin-right: 10px;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ff6b6b;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">SparkleWash Kenya</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="book.html">Book Now</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1 class="display-4 mb-4">Welcome to SparkleWash Kenya</h1>
+            <p class="lead mb-4">Experience the best car wash service in Kenya!</p>
+            <a href="book.html" class="btn btn-primary btn-lg">Book Now</a>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <i class="fas fa-tint feature-icon"></i>
+                <h3>Quality Service</h3>
+                <p>We use premium products for a perfect finish.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <i class="fas fa-clock feature-icon"></i>
+                <h3>Fast Turnaround</h3>
+                <p>Get your car sparkling clean in no time.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <i class="fas fa-leaf feature-icon"></i>
+                <h3>Eco-Friendly</h3>
+                <p>We care for your car and the environment.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5 class="footer-heading">About SparkleWash Kenya</h5>
+                    <p class="footer-content">Providing top-notch car wash services since 2020.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="list-unstyled footer-content">
+                        <li><a href="#" class="text-white">FAQs</a></li>
+                        <li><a href="#" class="text-white">Terms of Service</a></li>
+                        <li><a href="#" class="text-white">Privacy Policy</a></li>
+                        <li><a href="contact.html" class="text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="footer-heading">Connect With Us</h5>
+                    <p class="footer-content">Stay updated with our latest offers:</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4" style="background-color: white;">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="footer-content">&copy; 2024 SparkleWash Kenya. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>

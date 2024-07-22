@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SparkleWash Kenya - Professional Car Cleaning Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+        }
+
+        .navbar {
+            background-color: #7ad5ff;
+        }
+
+        .navbar-brand, .nav-link {
+            color: rgb(35, 27, 107) !important;
+        }
+
+        .hero {
+            background-image: url('carwash.png');
+            background-size: cover;
+            background-position: center;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background-color: #4042b4;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #31389e;
+        }
+
+        .features {
+            padding: 80px 0;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #4042b4;
+            margin-bottom: 20px;
+        }
+
+        .testimonials {
+            background-color: #e6f3ff;
+            padding: 80px 0;
+        }
+
+        footer {
+            background-color: #34329e;
+            color: rgb(135, 195, 206);
+            padding: 40px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">SparkleWash Kenya</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="display-4 mb-4">Welcome to SparkleWash Kenya</h1>
+            <p class="lead mb-4">Professional Car Cleaning Services</p>
+            <a href="login.html" class="btn btn-primary btn-lg">Book Your Wash Now</a>
+        </div>
+    </section>
+
+    <section id="services" class="features">
+        <div class="container">
+            <h2 class="text-center mb-5">Our Services</h2>
+            <div class="row">
+                <div class="col-md-4 text-center mb-4">
+                    <i class="fas fa-car feature-icon"></i>
+                    <h3>Exterior Wash</h3>
+                    <p>Thorough cleaning of your car's exterior, leaving it spotless and shiny.</p>
+                </div>
+                <div class="col-md-4 text-center mb-4">
+                    <i class="fas fa-vacuum-robot feature-icon"></i>
+                    <h3>Interior Cleaning</h3>
+                    <p>Deep cleaning of your car's interior, including vacuuming and surface wiping.</p>
+                </div>
+                <div class="col-md-4 text-center mb-4">
+                    <i class="fas fa-tint feature-icon"></i>
+                    <h3>Premium Detailing</h3>
+                    <p>Comprehensive detailing service for both exterior and interior of your vehicle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="testimonials">
+        <div class="container">
+            <h2 class="text-center mb-5">What Our Customers Say</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">"SparkleWash Kenya provides exceptional service. My car looks brand new every time!"</p>
+                            <footer class="blockquote-footer">John D.</footer>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">"I'm amazed by the attention to detail. Best car wash service in Nairobi!"</p>
+                            <footer class="blockquote-footer">Sarah M.</footer>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">"Professional, punctual, and perfect results. Highly recommended!"</p>
+                            <footer class="blockquote-footer">David K.</footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>About SparkleWash Kenya</h5>
+                    <p>Providing top-notch car wash services since 2020. We're committed to making your vehicle shine!</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p>123 Shine Avenue, Nairobi, Kenya<br>
+                    Phone: +254 123 456 789<br>
+                    Email: info@sparklewashkenya.com</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <a href="#" class="text-white me-2"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2024 SparkleWash Kenya. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
